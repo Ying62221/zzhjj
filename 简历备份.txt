@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>curriculum vitae</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #111;
+        --text: #eee;
+        --table-bg: #222;
+        --table-border: #444;
+        --table-th-bg: #333;
+        --header-bg: #333;
+        --header-text: #fff;
+      }
+      .light-mode {
+        --bg: #fff;
+        --text: #333;
+        --table-bg: #f9f9f9;
+        --table-border: #ccc;
+        --table-th-bg: #e0e0e0;
+        --header-bg: #ddd;
+        --header-text: #333;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+        transition: background 0.5s, color 0.5s;
+      }
+      h1.ct.tt {
+        font-size: 2em;
+        text-align: center;
+        margin-top: 40px;
+        text-transform: uppercase;
+        border-bottom: 3px solid #aaa;
+        display: inline-block;
+        animation: fadeInDown 2s ease-out;
+      }
+      hr {
+        margin: 20px 0;
+      }
+      h2 {
+        font-size: 1.5em;
+        margin: 20px 0 20px;
+        padding: 10px;
+        background: var(--header-bg);
+        color: var(--header-text);
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s;
+        animation: fadeInLeft 1.8s forwards;
+        border-radius: 5px;
+      }
+      h2:hover {
+        background: #444;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      ol.pp {
+        margin-left: 10px;
+        margin-bottom: 30px;
+        max-height: 1000px;
+        opacity: 1;
+        transform: scaleY(1);
+        transition: max-height 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+        overflow: hidden;
+      }
+      ol.pp.hidden {
+        max-height: 0;
+        opacity: 0;
+        transform: scaleY(0.95);
+      }
+      .circle-btn {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #d2f0f4;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5em;
+        box-shadow: 0 0 8px #a1afc9;
+        transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+      }
+      .circle-btn:hover {
+        background: #424c50;
+        transform: scale(1.1);
+        box-shadow: 0 0 12px #a1afc9;
+      }
+      #scrollToTopBtn {
+        bottom: 20px;
+        right: 20px;
+      }
+      #toggleAllBtn {
+        bottom: 90px;
+        right: 20px;
+      }
+      #themeToggleBtn {
+        top: 20px;
+        right: 20px;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .highlight {
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+        background-color: rgba(255, 215, 0, 0.15);
+        transition: text-shadow 0.3s;
+      }
+      .cursor-trail {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--header-text);
+        pointer-events: none;
+        animation: trailFade 0.5s forwards;
+        box-shadow: 0 0 10px var(--header-text);
+      }
+      @keyframes trailFade {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+      }
+      .bubble {
+        position: fixed;
+        border-radius: 50%;
+        background: linear-gradient(
+          45deg,
+          rgba(255, 0, 0, 0.3),
+          rgba(255, 127, 0, 0.3),
+          rgba(255, 255, 0, 0.3),
+          rgba(0, 255, 0, 0.3),
+          rgba(0, 0, 255, 0.3),
+          rgba(75, 0, 130, 0.3),
+          rgba(148, 0, 211, 0.3)
+        );
+        color: #808080;
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        font-weight: bold;
+        z-index: 1000;
+        pointer-events: auto;
+        user-select: none;
+        animation: float 4s ease-in-out infinite;
+        transition: box-shadow 0.3s;
+      }
+      .bubble:hover {
+        box-shadow: 0 0 15px #000000;
+      }
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(30px, -30px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      lg {
+        color: #90ee90;
+        font-weight: bold;
+      }
+      .lollipop-effect {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: conic-gradient(
+          rgba(255, 0, 0, 0.5),
+          rgba(255, 127, 0, 0.5),
+          rgba(255, 255, 0, 0.5),
+          rgba(0, 255, 0, 0.5),
+          rgba(0, 0, 255, 0.5),
+          rgba(75, 0, 130, 0.5),
+          rgba(148, 0, 211, 0.5),
+          rgba(255, 0, 0, 0.5)
+        );
+        animation: spin 1s linear infinite, fadeOut 1s forwards;
+        pointer-events: none;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+      }
+
+      #cvHeading {
+        font-size: 2em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: var(--header-bg);
+        color: var(--header-text);
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #cvContent {
+        font-size: 1em;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: var(--table-bg);
+        border: 1px solid var(--table-border);
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: var(--text);
+      }
+
+      .tag {
+        display: inline-block;
+        border-radius: 10px;
+        padding: 2px 8px;
+        margin-left: 5px;
+        font-size: 0.9em;
+      }
+      .tag-red {
+        border: 1px solid #ff9999;
+        background: rgba(255, 153, 153, 0.2);
+        color: #ff6666;
+      }
+      .tag-orange {
+        border: 1px solid #ffcc99;
+        background: rgba(255, 204, 153, 0.2);
+        color: #ff9966; 
+      }
+      .tag-blue {
+        border: 1px solid #99ccff;
+        background: rgba(153, 204, 255, 0.2);
+        color: #6699ff;
+      }
+      .tag-green {
+        border: 1px solid #99e699;
+        background: rgba(153, 230, 153, 0.2);
+        color: #66cc66;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="cvHeading">个人简历</h2>
+    <p id="cvContent"></p>
+    <h2>报考原因</h2>
+    <ol class="pp">
+      
+        <b>1.对学校的认知:</b><br>
+        <b>(1)学术底蕴与专业实力的深度契合</b><br>
+        <p>华侨大学拥有福建省重点实验室（如“智能信息处理与物联网技术实验室”）及教育部工程研究中心等科研平台，且
+        华大“产学研一体化”培养模式（如校企合作项目、企业导师制）将助力我快速成长为兼具学术能力与工程实践的复合型人才。</p><br>
+        <b>(2)国际化视野与跨学科融合的广阔平台</b><br>
+        <p>作为“华侨最高学府”，华大计算机专业依托“侨校+名校”战略，
+        提供“3+1”本硕连读国际项目（如与新加坡国立大学、英国伯明翰大学的合作）及海外研修计划，满足我对海外学术交流的需求。
+        华大“计算机+外语”双学位培养模式，以及“华文教育”特色资源，将助力我未来在国际化技术团队中发挥桥梁作用。</p><br>
+        <b>2.个人愿景</b><br>
+        <p>选择华侨大学计算机专业，不仅是对技术前沿的追求，更是对“用代码改变世界”理想的践行。
+        我期待在华大“智能计算实验室”中探索AI边界，在“校企合作项目”中积累实战经验，在“国际化交流”中拓宽技术视野，
+        最终成长为兼具“技术深度”与“人文关怀”的新时代工程师。</p><br>
+      
+    </ol>
+    
+    <h2>报考信息</h2>
+    <ol class="pp">
+      
+        <b>报考院校：华侨大学<br>
+         <b>专业：计算机科学与技术<br><br>
+        <p>民族：汉族</p><br> 
+        <p>现居：福建泉州</p><br>
+        <p>电话：17759019791</p><br>
+        <p>籍贯：福建</p><br>
+        <p>邮箱：1625138673@qq.com</p>
+   
+    </ol>
+
+    <h2>教育经历</h2>
+    <ol class="pp">
+      
+        <p>2022.09——2026.06</p><br>
+        <p>院校名称：重庆人文科技学院</p><br>
+        <p>专业：计算机科学与技术专业</p><br>
+        <b>主修课程：操作系统、数据结构、数据库、数据挖掘</b><br><br>
+        <b>成绩排名：年级排名前20%<br><br>
+        <p>获得荣誉及证书：</p>
+        <b>1.四级证书</b><br>
+        <b>2.2023年重庆市第十一届大学生程序设计大赛三等奖</b><br>
+        <b>3.校级调研比赛优秀奖</b><br>
+        <b>4.迎新杯校级足球赛男子组第三名</b><br>
+        <b>5.重庆市大学城首届高校棋类交流赛第三名</b><br>
+        <b>6.2023年合川杯围棋赛第四名</b><br>
+        <b>7.2024年合川杯围棋赛第五名</b><br>
+        <b>8.拥有C1驾驶证</b><br>
+        <b>9.拥有围棋2段证书</b><br>
+      
+    </ol>
+    
+    <h2>项目经验</h2>
+    <ol class="pp">
+      <li>
+        <b>2024.02~2024.3 </b><b>大学生创业项目大赛 </b><b>项目小组负责人</b><br>
+        <b>项目课题：《富“村”山居-智慧农村赋能》</b><br>
+        <b>个人角色：项目组核心负责人，统筹8人跨学科团队。</b><br>
+        <b>主要职责：</b><br>
+        <p>(1)通过深度沟通挖掘成员专长，制定个性化分工方案；</p><br>
+        <p>(2)协调资源推进项目执行，确保阶段性目标达成；</p><br>
+        <p>(3)定期组织团队复盘，优化协作流程。</p><br>
+        <b>实践收获</b><br>
+        <p>(1)区域经济洞察：深入分析重庆农村市场需求特征，发现智慧农业与文旅结合的潜在机会；</p><br>
+        <p>(2)团队管理策略：总结出“动态分工+目标导向”的协作模式，提升团队执行力；</p><br>
+        <p>(3)创业认知升级：理解政策导向与市场需求的平衡点，为后续创业实践积累实战经验。</p><br>
+      </li>
+      <li>
+       <b>2024.02~2024.3 </b><b>大学生创业项目大赛 </b><b>项目小组成员</b><br>
+       <b>项目课题：《智音未来》</b><br>
+       <b>主要职责：</b><br>
+       <p>(1)全程紧密配合项目负责人，高效执行团队分工，在项目策划、需求分析及技术落地等环节中发挥关键作用；</p><br>
+       <p>(2)主导完成项目关键模块的可行性验证，通过跨学科协作（融合音乐学、数据分析与商业策略），推动项目从理论框架向可落地产品转化。</p><br>
+       <b>实践收获</b><br>
+       <p>(1)系统掌握音乐产业全链路分析方法论，深度理解内容创作、分发渠道、用户运营及商业化变现的协同逻辑；</p><br>
+       <p>(2)熟练运用Python等工具完成音乐市场数据建模与可视化分析，构建出具有行业参考价值的用户行为预测模型；</p><br>
+       <p>(3)强化了跨领域团队协作与复杂问题解决能力</u><br>
+      </li>
+      <li>
+       <b>2024.02~2024.3 </b><b>大学生创业项目大赛 </b><b>项目小组成员</b><br>
+       <b>项目课题：《传承围棋非遗项目，弘扬中华文明》</b><br>
+       <b>主要职责：</b><br>
+       <p>(1)全程深度参与项目全周期管理，精准对接负责人战略部署，在项目策划、需求分析、技术方案落地等关键环节中承担核心角色；</p><br>
+       <p>(2)负责项目成果的对外展示与路演，通过精准传递围棋文化内涵与商业价值，助力团队在创业大赛中斩获佳绩。</p><br>
+       <b>实践收获</b><br>
+       <p>(1)文化认知深化：系统梳理围棋非遗文化脉络，理解其作为中华文明符号的当代传承路径，强化文化自信与责任感；</p><br>
+       <p>(2)市场洞察升级：掌握文化产业市场分析方法论，洞察围棋教育、文创衍生品等细分领域机遇，明确个人职业优势与行业结合点；</p><br>
+       <p>(3)战略思维培养：通过项目从0到1的落地实践，建立从文化价值挖掘到商业变现的全链路思维，强化团队协作与资源整合能力。</p><br>
+      </li>
+    </ol>
+
+    <h2>校园经历</h2>
+    <ol class="pp">
+      <li>
+       <b>2022.09~2025.04</b> <b>风云棋社</b><b>实训部副部长</b><br>
+        <p>(1)主导棋社活动规划，统筹10+场校内外棋类赛事，带领团队完成从创意策划到现场执行的闭环管理，活动参与人数累计超500人次；</p><br>
+        <p>(2)累计培养新生棋手10+名，其中多名成员在后续赛事中获奖；</p><br>
+        <p>(3)多次参与校外各类棋类比赛并取得了佳绩</p><br>
+      </li>
+      <li>
+       <b>2022.09~2025.04</b> <b>院辩论队</b><b>队员</b><br>
+       <p>(1)主导或参与30+场队内模拟辩论，通过“攻防拆解—立论重构—复盘优化”闭环训练体系，实现逻辑框架搭建、临场应变及论点深度突破；</p><br>
+       <p>(2)不断与队员与各院对手交流切磋，不断在对抗中成长</p><br>
+       <p>(3)多次作为主力辩手代表学院出战校级辩论赛</p><br>
+      </li>
+      <li>
+       <b>2022.09~2025.04</b> <b>院足球队</b><b>队员</b><br>
+       <p>(1)积极参与校级足球赛</p><br>
+       <p>(2)积极参与队内训练</p><br>
+      </li>
+    </ol>
+
+    
+
+    <button id="themeToggleBtn" class="circle-btn">🌞</button>
+    <button id="toggleAllBtn" class="circle-btn">🔼</button>
+    <button id="scrollToTopBtn" class="circle-btn">🔝</button>
+
+
+    <script>
+        
+      const bubbleCount = 6;
+      for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+        bubble.innerText = "H.H.";
+        bubble.style.left = Math.random() * 100 + "vw";
+        bubble.style.top = Math.random() * 100 + "vh";
+        let duration = Math.random() * 3 + 4;
+        bubble.style.animationDuration = duration + "s";
+        bubble.addEventListener("mouseenter", () => {
+          bubble.innerText = "Honghui";
+          bubble.style.animationPlayState = "paused";
+        });
+        bubble.addEventListener("mouseleave", () => {
+          bubble.innerText = "H.H.";
+          bubble.style.animationPlayState = "running";
+        });
+        document.body.appendChild(bubble);
+      }
+
+      document.querySelectorAll("h2").forEach((heading) => {
+        heading.addEventListener("click", () => {
+          const siblingOL = heading.nextElementSibling;
+          if (siblingOL && siblingOL.tagName === "OL") {
+            siblingOL.classList.toggle("hidden");
+          }
+        });
+      });
+
+      let allCollapsed = false;
+      const toggleAllBtn = document.getElementById("toggleAllBtn");
+      toggleAllBtn.addEventListener("click", () => {
+        toggleAllBtn.style.transition = "transform 0.3s";
+        toggleAllBtn.style.transform = "translateY(-10px)";
+        setTimeout(() => {
+          toggleAllBtn.style.transform = "translateY(0)";
+          document.querySelectorAll("ol.pp").forEach((list) => {
+            if (!allCollapsed) {
+              list.classList.add("hidden");
+            } else {
+              list.classList.remove("hidden");
+            }
+          });
+          allCollapsed = !allCollapsed;
+          toggleAllBtn.innerText = allCollapsed ? "🔽" : "🔼";
+        }, 300);
+      });
+
+      const scrollBtn = document.getElementById("scrollToTopBtn");
+      scrollBtn.style.display = "none";
+      
+      document.body.classList.add("light-mode");
+      
+      window.addEventListener("scroll", () => {
+        if (document.documentElement.scrollTop > 200) {
+          scrollBtn.style.display = "flex";
+        } else {
+          scrollBtn.style.display = "none";
+        }
+      });
+
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const themeToggleBtn = document.getElementById("themeToggleBtn");
+      themeToggleBtn.addEventListener("click", () => {
+        let flashCount = 0;
+        const flashInterval = setInterval(() => {
+          themeToggleBtn.style.background = flashCount % 2 === 0 ? "#000" : "#fff";
+          flashCount++;
+          if (flashCount === 6) {
+            clearInterval(flashInterval);
+            document.body.classList.toggle("light-mode");
+            themeToggleBtn.style.background = "";
+            themeToggleBtn.innerText = document.body.classList.contains("light-mode") ? "🌜" : "🌞";
+          }
+        }, 150);
+      });
+
+      
+      const cvTranslations = {
+        en: "I'm Zeng honghui, I am currently pursuing a bachelor's degree at Chongqing University of Humanities, Science and Technology.",
+        "zh-Hans": "我是曾泓辉，目前正在重庆人文科技学院攻读本科学位。",  
+      };
+      const initialCVContent = "我是曾泓辉，目前正在重庆人文科技学院攻读本科学位。";
+      document.getElementById("cvContent").textContent = initialCVContent;
+      
+
+      const cvHeadingTranslations = {
+        "zh-Hans": "个人简历",
+        en: "Curriculum Vitae"
+      };
+
+      const headings = [
+        { en: "Curriculum Vitae", "zh-Hans": "个人简历" },
+        { en: "Reason for application", "zh-Hans": "报考原因"},
+        { en: "Application Information", "zh-Hans": "报考信息" },
+        { en: "Educational experience", "zh-Hans": "教育经历"},
+        { en: "Project experience", "zh-Hans": "项目经验"},
+        { en: "Campus experience", "zh-Hans": "校园经历"},
+      ];
+
+      document.getElementById("cvHeading").textContent = cvHeadingTranslations["zh-Hans"];
+
+      const languageToggleBtn = document.createElement("button");
+      languageToggleBtn.id = "languageToggleBtn";
+      languageToggleBtn.className = "circle-btn";
+      languageToggleBtn.style.top = "20px";
+      languageToggleBtn.style.left = "auto";
+      languageToggleBtn.style.right = "80px";
+      languageToggleBtn.textContent = "🌐";
+      document.body.appendChild(languageToggleBtn);
+
+      const languages = ["en", "zh-Hans"];
+      let currentLanguageIndex = 1;
+
+      languageToggleBtn.addEventListener("click", () => {
+        languageToggleBtn.style.transition = "transform 0.5s";
+        languageToggleBtn.style.transform = "rotate(540deg)";
+        setTimeout(() => {
+          languageToggleBtn.style.transform = "rotate(0deg)";
+          currentLanguageIndex = (currentLanguageIndex + 1) % languages.length;
+          const selectedLanguage = languages[currentLanguageIndex];
+          document.querySelectorAll("h2").forEach((heading, index) => {
+            heading.textContent = headings[index][selectedLanguage];
+          });
+          document.getElementById("cvHeading").textContent = cvHeadingTranslations[selectedLanguage];
+          document.getElementById("cvContent").textContent = cvTranslations[selectedLanguage];
+        }, 500);
+      });
+
+      const languageSelector = document.getElementById("languageSelector");
+      if (languageSelector) {
+        languageSelector.remove();
+      }
+
+      document.querySelectorAll("ol.pp").forEach((list) => {
+        list.querySelectorAll("li").forEach((item, index) => {
+          const originalHTML = item.innerHTML;
+          item.innerHTML = `${index + 1}. ${originalHTML}`;
+        });
+      });
+
+      document.addEventListener("mousemove", (event) => {
+        const cursorTrail = document.createElement("div");
+        cursorTrail.classList.add("cursor-trail");
+        cursorTrail.style.left = `${event.pageX}px`;
+        cursorTrail.style.top = `${event.pageY}px`;
+        document.body.appendChild(cursorTrail);
+
+        setTimeout(() => {
+          cursorTrail.remove();
+        }, 500);
+      });
+
+      function wrapTextNodes(node) {
+        if (node.nodeType === 3) {
+          const re = /Honghui Zeng/g;
+          if (node.data.match(re)) {
+            const frag = document
+              .createRange()
+              .createContextualFragment(
+                node.data.replace(
+                  re,
+                  '<span class="highlight">Honghui Zeng</span>'
+                )
+              );
+            node.parentNode.replaceChild(frag, node);
+          }
+        } else if (
+          node.nodeType === 1 &&
+          node.childNodes &&
+          !/(script|style|button)/i.test(node.tagName)
+        ) {
+          for (let i = 0; i < node.childNodes.length; i++) {
+            wrapTextNodes(node.childNodes[i]);
+          }
+        }
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        wrapTextNodes(document.body);
+      });
+    </script>
+  </body>
+</html>
